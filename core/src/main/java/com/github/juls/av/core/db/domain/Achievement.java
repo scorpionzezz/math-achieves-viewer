@@ -1,9 +1,10 @@
-package com.github.juls.av.core.db;
+package com.github.juls.av.core.db.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Achievement {
+public class Achievement implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,7 +14,6 @@ public class Achievement {
 
     private String info;
 
-    @OneToOne(targetEntity = Achievement.class, mappedBy = "id")
     private Long parentId;
 
     public long getId() {
@@ -40,11 +40,11 @@ public class Achievement {
         this.info = info;
     }
 
-    public long getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(long parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 }
