@@ -1,16 +1,20 @@
 package com.github.juls.av.web;
 
-import com.github.juls.av.Core;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-@Import(Core.class)
-@SpringBootApplication
-public class Bootstrapper {
+@SpringBootApplication(scanBasePackages = "com.github.juls.av")
+public class Bootstrapper extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(Bootstrapper.class, args);
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Bootstrapper.class);
     }
 
 }
