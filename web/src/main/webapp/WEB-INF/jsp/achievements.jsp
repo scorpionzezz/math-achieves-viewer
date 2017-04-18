@@ -28,12 +28,6 @@
     </style>
 </head>
 <body>
-<div id="body">
-    <div id="footer">
-        d3.layout.tree
-        <div class="hint">click or option-click to expand or collapse</div>
-    </div>
-</div>
 <script type="text/javascript">
 
     var m = [20, 120, 20, 120],
@@ -45,8 +39,8 @@
     var tree = d3.layout.tree().size([h, w]);
 
     var diagonal = d3.svg.diagonal().projection(function (d) {
-            return [d.y, d.x];
-        });
+        return [d.y, d.x];
+    });
 
     var vis = d3.select("#body").append("svg:svg")
         .attr("width", w + m[1] + m[3])
@@ -54,8 +48,25 @@
         .append("svg:g")
         .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
+
+    function parseTree(data) {
+        var map = {}, node, roots = [];
+        for (var i = 0; i < data.length; i += 1) {
+            node = data[i];
+            node.name = node.info + "/" + node.shortInfo;
+            node.children = [];
+            map[node.id] = node;
+            if (node.parentId !== 0) {
+                map[node.parentId].children.push(node);
+            } else {
+                roots.push(node);
+            }
+        }
+        return roots;
+    }
+
     d3.json("/info", function (json) {
-        root = json;
+        root = {name: "Root", children:parseTree(json)};
         root.x0 = h / 2;
         root.y0 = 0;
 
@@ -68,11 +79,6 @@
 
         // Initialize the display to show a few nodes.
         root.children.forEach(toggleAll);
-        toggle(root.children[1]);
-        toggle(root.children[1].children[2]);
-        toggle(root.children[9]);
-        toggle(root.children[9].children[0]);
-
         update(root);
     });
 
