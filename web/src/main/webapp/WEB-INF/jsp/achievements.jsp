@@ -28,6 +28,11 @@
     </style>
 </head>
 <body>
+<div id="body">
+    <div id="footer">
+        <div class="hint">click or option-click to expand or collapse</div>
+    </div>
+</div>
 <script type="text/javascript">
 
     var m = [20, 120, 20, 120],
@@ -54,6 +59,7 @@
         for (var i = 0; i < data.length; i += 1) {
             node = data[i];
             node.name = node.info + "/" + node.shortInfo;
+            node.size = 4000;
             node.children = [];
             map[node.id] = node;
             if (node.parentId !== 0) {
@@ -62,11 +68,22 @@
                 roots.push(node);
             }
         }
+
+        data.forEach(function (elem) {
+            elem.parentId = undefined;
+            elem.info = undefined;
+            elem.shortInfo = undefined;
+
+            if (elem.children.length === 0) {
+                elem.children = undefined;
+            }
+        });
+
         return roots;
     }
 
     d3.json("/info", function (json) {
-        root = {name: "Root", children:parseTree(json)};
+        root = {name: "Math achievements", children:parseTree(json)};
         root.x0 = h / 2;
         root.y0 = 0;
 
