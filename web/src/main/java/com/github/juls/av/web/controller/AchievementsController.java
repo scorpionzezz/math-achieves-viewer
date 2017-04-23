@@ -11,4 +11,9 @@ public class AchievementsController {
         return "achievements";
     }
 
+    @RequestMapping("/view")
+    public String viewPage() {
+        return "view";
+    }
+
 }
