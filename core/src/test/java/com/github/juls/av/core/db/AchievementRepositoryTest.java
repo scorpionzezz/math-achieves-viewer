@@ -28,6 +28,8 @@ public class AchievementRepositoryTest {
     public void shouldPersistEntity() {
         LOG.info("Previous amount of persisted entities = {}", achievementRepository.count());
 
+        achievementRepository.deleteAll();
+
         Achievement achievement = new Achievement();
         achievement.setInfo("info");
         achievement.setShortInfo("short info");
