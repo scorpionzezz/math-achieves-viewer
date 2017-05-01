@@ -32,7 +32,7 @@
                     edges = gotEdges;
                     console.log("Got edges: " + edges);
 
-                    edges.forEach(function(elem){
+                    edges.forEach(function (elem) {
                         elem.from = elem.source;
                     });
 
@@ -46,9 +46,42 @@
                     };
                     var options = {
                         nodes: {
-                            shape: 'dot'
+                            color: '#6369ff',
+                            fixed: false,
+                            font: {
+                                color: '#343434',
+                                size: 20,
+                                face: 'arial',
+                                background: 'none',
+                                strokeWidth: 0,
+                                strokeColor: '#ffffff',
+                                align: 'center',
+                                multi: false
+                            },
+                            labelHighlightBold: true,
+                            physics: false,
+                            shape: 'ellipse'
+                        },
+                        edges:{
+                            arrows: {
+                                to:     {enabled: true, scaleFactor:1, type:'arrow'},
+                                middle: {enabled: false, scaleFactor:1, type:'arrow'},
+                                from:   {enabled: false, scaleFactor:1, type:'arrow'}
+                            },
+                            color: {
+                                color:'#5294b6',
+                                highlight:'#181456',
+                                hover: '#848484',
+                                opacity:1.0
+                            },
+                            arrowStrikethrough: true,
+                            chosen: true,
+                            font: '12px arial #ff0000',
+                            shadow: true,
+                            smooth: true
                         }
                     };
+
                     network = new vis.Network(document.getElementById('graph'), data, options);
                 });
             });
