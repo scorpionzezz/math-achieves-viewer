@@ -1,13 +1,13 @@
 <html>
 <head>
-    <title>Network | Sizing</title>
+    <title>Math achievements</title>
 
     <style type="text/css">
         html, body {
             font: 10pt arial;
         }
 
-        #mynetwork {
+        #graph {
             width: 600px;
             height: 400px;
             border: 1px solid lightgray;
@@ -25,14 +25,18 @@
             var network = null;
 
             $.get("/data", function (gotData) {
-                console.log("Got data: " + gotData);
-                nodes = JSON.parse(gotData).nodes;
+                nodes = gotData;
+                console.log("Got data: " + nodes);
 
                 $.get("/edges", function (gotEdges) {
-                    console.log("Got edges: " + gotEdges);
-                    edges = JSON.parse(gotEdges).edges;
+                    edges = gotEdges;
+                    console.log("Got edges: " + edges);
 
-                    var container = $("#mynetwork");
+                    edges.forEach(function(elem){
+                        elem.from = elem.source;
+                    });
+
+                    var container = $("#graph");
                     container.css({"width": $(window).width() + "px"});
                     container.css({"height": $(window).height() + "px"});
 
@@ -45,7 +49,7 @@
                             shape: 'dot'
                         }
                     };
-                    network = new vis.Network(document.getElementById('mynetwork'), data, options);
+                    network = new vis.Network(document.getElementById('graph'), data, options);
                 });
             });
         });
@@ -54,7 +58,7 @@
 </head>
 
 <body>
-<div id="mynetwork"></div>
+<div id="graph"></div>
 </body>
 
 </html>
