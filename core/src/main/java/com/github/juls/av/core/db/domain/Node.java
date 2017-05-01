@@ -14,6 +14,8 @@ public class Node {
 
     private String label;
 
+    private String title;
+
     public long getId() {
         return id;
     }
@@ -36,5 +38,13 @@ public class Node {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

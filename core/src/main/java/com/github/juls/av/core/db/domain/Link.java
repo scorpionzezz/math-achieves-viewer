@@ -17,6 +17,8 @@ public class Link {
 
     private byte value;
 
+    private String label;
+
     private String title;
 
     public long getId() {
@@ -49,6 +51,14 @@ public class Link {
 
     public void setValue(byte value) {
         this.value = value;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getTitle() {
