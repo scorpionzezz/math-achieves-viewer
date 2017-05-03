@@ -12,6 +12,8 @@ public class Node {
 
     private byte value;
 
+    private byte level;
+
     private String label;
 
     private String title;
@@ -30,6 +32,14 @@ public class Node {
 
     public void setValue(byte value) {
         this.value = value;
+    }
+
+    public byte getLevel() {
+        return level;
+    }
+
+    public void setLevel(byte level) {
+        this.level = level;
     }
 
     public String getLabel() {
