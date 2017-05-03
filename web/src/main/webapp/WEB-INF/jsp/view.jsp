@@ -44,41 +44,52 @@
                         nodes: nodes,
                         edges: edges
                     };
+
                     var options = {
+                        /*configure: {
+                            enabled: true,
+                            filter: 'nodes,edges',
+                            container: document.getElementById('graph'),
+                            showButton: true
+                        },*/
                         nodes: {
-                            color: '#6369ff',
-                            fixed: false,
-                            font: {
-                                color: '#343434',
-                                size: 20,
-                                face: 'arial',
-                                background: 'none',
-                                strokeWidth: 0,
-                                strokeColor: '#ffffff',
-                                align: 'center',
-                                multi: false
+                            borderWidthSelected: 5,
+                            color: {
+                                background: "rgba(187,192,252,1)"
                             },
-                            labelHighlightBold: true,
                             physics: false,
-                            shape: 'ellipse'
+                            scaling: {
+                                min: 11
+                            },
+                            size: 30
                         },
-                        edges:{
+                        edges: {
                             arrows: {
-                                to:     {enabled: true, scaleFactor:1, type:'arrow'},
-                                middle: {enabled: false, scaleFactor:1, type:'arrow'},
-                                from:   {enabled: false, scaleFactor:1, type:'arrow'}
+                                to: {enabled: true}
                             },
                             color: {
                                 color:'#5294b6',
                                 highlight:'#181456',
-                                hover: '#848484',
-                                opacity:1.0
+                                hover: '#848484'
                             },
-                            arrowStrikethrough: true,
-                            chosen: true,
-                            font: '12px arial #ff0000',
-                            shadow: true,
-                            smooth: true
+                            scaling: {
+                               customScalingFunction: function (min,max,total,value) {
+                                   return value/(1.0*max);
+                               }
+                            },
+                            smooth: {
+                                enabled: true,
+                                type: 'diagonalCross'
+                            },
+                            physics: false
+                        },
+                        layout: {
+                            hierarchical: {
+                                enabled: true,
+                                levelSeparation: 100,
+                                nodeSpacing: 150,
+                                treeSpacing: 150
+                            }
                         }
                     };
 
