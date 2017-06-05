@@ -34,6 +34,7 @@
 
                     edges.forEach(function (elem) {
                         elem.from = elem.source;
+                        elem.label = undefined;
                     });
 
                     var container = $("#graph");
